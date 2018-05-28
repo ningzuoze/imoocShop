@@ -58,4 +58,3 @@ function verifyImage($type=3, $length=4,$pixel=50,$line=3,$sess_name="verify"){
     imagegif($image);
     imagedestroy($image);
 }
-verifyImage();
