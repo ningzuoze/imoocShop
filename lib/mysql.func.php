@@ -19,6 +19,14 @@ function connect(){
 }
 
 //完成插入数据的操作 insert(插入到那个表,插入的数据);
-function insert($tavle,$array){
-    $keys=join("",array_keys($array));
+function insert($table,$array){
+//解析数组作为键
+    $keys=join(",",array_keys($array));
+//解析数组为字符串为键值
+    $vals="'".join(",",array_values($array));
+//插入语句
+    $sql="insert {$table} ($keys) values ({$vals})";
+    mysqli__query($link,$sql);
+//返回上一步 INSERT 操作产生的 ID
+    return mysql_insert_id();
 }
