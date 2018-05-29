@@ -5,7 +5,7 @@ require_once "string.func.php";
      
 
 //通过GD库做验证码 verifyImage(定义类型,验证码长度,干扰点,干扰直线)
-function verifyImage($type=3, $length=4,$pixel=50,$line=3,$sess_name="verify"){
+function verifyImage($type=1, $length=4,$pixel=50,$line=3,$sess_name="verify"){
     //开启session
     if(!isset($_SESSION)){
         session_start();
