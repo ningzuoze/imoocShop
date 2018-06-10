@@ -12,14 +12,14 @@ function insert($table,$array){
     $link=mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_DBNAME) or die("数据库链接失败Error:".mysql_errno().":".mysql_error());
     mysqli_set_charset($link,DB_CHARSET);
 //解析数组作为键
-    $keys=join(",",array_keys($array));
+    $keys=join("`,`",array_keys($array));
 //解析数组为字符串为键值
-    $vals="'".join(",",array_values($array))."'";
+    $vals=join("','",array_values($array));
 //插入语句 
-    $sql="insert {$table} ($keys) values ({$vals})";
+    $sql="INSERT into {$table} (`$keys`) values ('$vals')";
     mysqli_query($link,$sql);
 //返回上一步 INSERT 操作产生的 ID
-    return mysqli_insert_id();
+    return mysqli_insert_id($link);
 //关闭数据库
     mysqli_close($link);
 }
@@ -37,17 +37,17 @@ function update($table,$array,$where=null){
 //循环数组内容变成sql语句
     foreach($array as $key=>$val){
         if($str==null){
-            $sep="";
+            $sep=" ";
         }else{
             $sep=",";
         }
-        $str.=$sep.$key."=".$val."";
+        $str.=$sep.$key."="."'".$val."'"."";
     }
 //跟新语句
-    $sql="update {$table} set{$str}".($where==null?null:$where);
+    $sql="update {$table} set {$str} ".($where==null?null:$where=" where {$where}");
     mysqli_query($link,$sql);
 //返回修改的条数
-    return mysqli_affected_rows();
+    return mysqli_affected_rows($link);
 //关闭数据库
     mysqli_close($link);
 }
@@ -61,11 +61,11 @@ function delete($table,$where){
     $where=$where==null?null:$where;
 // $where=$where==null?null:"where".$where    
 //sql语句
-    $sql="delete form {$table} whrer {$where}";
+    $sql="DELETE FROM {$table} WHERE {$where}";
 // $sql="delete form {$table}{$where}";    
     mysqli_query($link,$sql);
 //返回修改的条数
-    return mysqli_affected_rows();
+    return mysqli_affected_rows($link);
 //关闭数据库
     mysqli_close($link);
 }
@@ -93,7 +93,7 @@ function fetchAll($sql,$result_type=MYSQLI_ASSOC){
 //查询整个数据
     $result=mysqli_query($link,$sql);
 //数组显示
-    while(@$row=mysql_fetch_array($result,$result_type)){
+    while(@$row=mysqli_fetch_array($result,$result_type)){
         $rows[]=$row;
     }
     return $rows;
