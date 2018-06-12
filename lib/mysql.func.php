@@ -107,7 +107,7 @@ function getResultnum($sql){
 //l链接数据库
     $link=mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_DBNAME) or die("数据库链接失败Error:".mysql_errno().":".mysql_error());
     mysqli_set_charset($link,DB_CHARSET);
-//执行sql语句
+//执行sql语句 
     $result=mysqli_query($link,$sql);
 //得到操作数量
     return mysqli_num_rows($result);
