@@ -46,9 +46,9 @@ function logout(){
 
 
 //得到所有的管理员
-    function getAllAdmin(){
+    function getAllAdmin($where=null){
 //用sql语句得到所有的管理员账号
-        $sql="select id,username,email from imooc_admin";
+        $sql="select id,username,email from imooc_admin {$where}";
 //调用fetchAll函数得到所有的管理员
         $rows=fetchAll($sql);
         return $rows;
@@ -79,3 +79,5 @@ function logout(){
         }
         return $mes;
     }
+
+    
