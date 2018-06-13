@@ -1,7 +1,7 @@
 <?php
     require_once '../include.php';
 //获取所有的管理员账号
-    // $rows=getAllAdmin();
+// $rows=getAllAdmin();
 
 
 //得到所有的表单查询
