@@ -47,17 +47,21 @@
                         <h3><span>+</span>分类管理</h3>
                     </li>
                     <li>
-                        <h3><span>+</span>订单管理</h3>
-                    </li>
-                    <li>
                         <h3><span>+</span>用户管理</h3>
                     </li>
                     <li>
+                        <h3 id="change4"><span>+</span>订单管理</h3>
+                        <dl id="menu4" style="display:none;">
+                            <dd><a href="addCate.php" target="mainFrame">添加分类</a></dd>
+                            <dd><a href="listCate.php" target="mainFrame">分类列表</a></dd>
+                        </dl>
+                    </li>
+                    <li>
                         <h3 id="change5"><span>+</span>管理员管理</h3>
-                            <dl id="menu5" style="display:none;">
-                                <dd><a href="addAdmin.php" target="mainFrame">添加管理员</a></dd>
-                                <dd><a href="listAdmin.php" target="mainFrame">管理员列表</a></dd>
-                            </dl>
+                        <dl id="menu5" style="display:none;">
+                            <dd><a href="addAdmin.php" target="mainFrame">添加管理员</a></dd>
+                            <dd><a href="listAdmin.php" target="mainFrame">管理员列表</a></dd>
+                        </dl>
                     </li>
                 </ul>
             </div>
@@ -78,6 +82,18 @@
                 }else{
                     $('#change5 span').text("+");
                     $('#menu5').toggle();
+                    key1=true;       
+                }
+            })
+
+            $("#change4").click(function(){
+                if(key1){
+                    $('#change4 span').text("-");
+                    $('#menu4').toggle();
+                    key1=false; 
+                }else{
+                    $('#change4 span').text("+");
+                    $('#menu4').toggle();
                     key1=true;       
                 }
             })

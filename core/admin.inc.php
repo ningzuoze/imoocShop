@@ -31,17 +31,22 @@ function logout(){
 
 //添加管理员信息函数
     function addAdmin(){
-    //将传过来的数据存到数组
-        $arr=$_POST;
-    //对密s码加密
-        $arr['password']=md5($_POST['password']);
-    //判断是否添加到数据库
-        if(insert("imooc_admin",$arr)){
-            $mes="添加成功!<br/><a href='addAdmin.php'>继续添加</a>|<a href='listAdmin.php'>查看管理员列表</a>";
+        //判断传入数据是否为空
+        if(!$_POST['username']==null&&!$_POST['password']==null&&!$_POST['email']==null){
+        //将传过来的数据存到数组
+            $arr=$_POST;
+        //对密s码加密
+            $arr['password']=md5($_POST['password']);
+        //判断是否添加到数据库
+            if(insert("imooc_admin",$arr)){
+                $mes="添加成功!<br/><a href='addAdmin.php'>继续添加</a>|<a href='listAdmin.php'>查看管理员列表</a>";
+            }else{
+                $mes="添加失败!<br/><a href='addAdmin.php'>重新添加</a>";
+            }
+            return $mes;
         }else{
-            $mes="添加失败!<br/><a href='addAdmin.php'>重新添加</a>";
+            alertMes("管理员信息不能为空","addAdmin.php");            
         }
-        return $mes;
     }
 
 

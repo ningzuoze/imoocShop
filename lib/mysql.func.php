@@ -17,6 +17,7 @@ function insert($table,$array){
     $vals=join("','",array_values($array));
 //插入语句 
     $sql="INSERT into {$table} (`$keys`) values ('$vals')";
+    echo $sql;
     mysqli_query($link,$sql);
 //返回上一步 INSERT 操作产生的 ID
     return mysqli_insert_id($link);

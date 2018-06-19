@@ -14,8 +14,12 @@
 //编辑管理员
     }elseif($act=='editAdmin'){
         $mes=editAdmin($id);
+//删除管理员
     }elseif($act=="delAdmin"){
         $mes=delAdmin($id);
+//添加分类
+    }elseif($act=="addCate"){
+        $mes=addCate($id);
     }
     
 
